@@ -6,14 +6,14 @@
 			<?php
 			require_once "patevaPDO.php";
 			session_start (); // käynnistetään sessio
-			
+
 			if (isset ( $_POST ["nayta"] )) {
 				$kantakasittely = new patevaPDO ();
 				$_SESSION ["naytaKoulutus"] = $kantakasittely->naytaKurssi($_POST["id"]);
 				header ( "location:etsiNayta.php" );
 				exit ();
 			}
-			
+
 			if (isset ( $_POST ["poista"] )) {
 				try {
 					$kantakasittely = new patevaPDO ();
@@ -33,20 +33,20 @@
 				$courseList = array (
 						"tyo" => "Työturvallisuuskorttikoulutus",
 						"hata" => "Hätäensiapukoulutus 8h",
-						"eak" => "Ennakoivan ajon koulutus" 
+						"eak" => "Ennakoivan ajon koulutus"
 				);
 				// Tehdään lista cap-kentän arvoista, jotta voidaan palauttaa vahvistuksessa oikeat arvot
 				$capList = array (
 						"yes" => "Kyllä",
-						"no" => "Ei" 
+						"no" => "Ei"
 				);
 				// Tehdään tietokanta-luokan olio
 				$kantakasittely = new patevaPDO ();
-				
+
 				// Kutsutaan tietokantaluokan metodia, mikä hakee kaikki leffat
 				// Metodi palauttaa oliotaulukon
 				$rivit = $kantakasittely->kaikkiKurssit ();
-				
+
 				// Käydään oliotaulukko läpi
 				echo ("<table id='lista' class='table table-borderless table-condensed table-hover'>");
 				echo ("<thead>");
@@ -58,7 +58,7 @@
 				echo ("<th></th>");
 				echo ("</tr>");
 				echo ("</thead>");
-				
+
 				foreach ( $rivit as $kurssi ) {
 					// oliotaulukosta otettu yksittäinen Kurssi-luokan olio
 					echo ("<tbody>");
@@ -67,10 +67,11 @@
 					echo ("<td>" . $courseList [$kurssi->getCourse ()] . "</td>");
 					echo ("<td>" . $kurssi->getWeekday () . " " . date ( "d.m.Y", strtotime ( $kurssi->getDate () ) ) . " klo " . $kurssi->getStart () . "-" . $kurssi->getEnd () . "</td>");
 					echo ("<td>" . $kurssi->getTrainer () . "</td>");
-					echo ("<td><form action='".htmlspecialchars($_SERVER["PHP_SELF"])."' method='post'> 
+					echo ("<td><form action='".htmlspecialchars($_SERVER["PHP_SELF"])."' method='post'>
 								<input type='hidden' name='id' id='id' value='" . $kurssi->getId () . "'>
-								<input type='submit' name='nayta' id='nayta' value='Näytä'>
-								<input type='submit' name='poista' value='Poista'>
+								<button type='submit' name='nayta' class='btn'>Näytä kurssi</button>
+								<button type='submit' name='poista' class='btn btn-danger'>Poista kurssi</button>
+
 						</form>" . "</td>");
 					echo ("</tr>");
 					echo ("</tbody>");
@@ -81,9 +82,9 @@
 				header ( "location: virhe.php?sivu=Listaus&virhe=" . $error->getMessage () );
 				exit ();
 			}
-			
-			?>	
-			
+
+			?>
+
 		</div>
 	</div>
 <script>
@@ -92,7 +93,7 @@
 		  table = document.getElementById("lista");
 		  switching = true;
 		  //Set the sorting direction to ascending:
-		  dir = "asc"; 
+		  dir = "asc";
 		  /*Make a loop that will continue until
 		  no switching has been done:*/
 		  while (switching) {
@@ -130,7 +131,7 @@
 		      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
 		      switching = true;
 		      //Each time a switch is done, increase this count by 1:
-		      switchcount ++;      
+		      switchcount ++;
 		    } else {
 		      /*If no switching has been done AND the direction is "asc",
 		      set the direction to "desc" and run the while loop again.*/
@@ -144,4 +145,3 @@
 
 </script>
 <?php include("footer.php"); ?>
-			

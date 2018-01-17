@@ -2,11 +2,14 @@
 <div class="container">
 	<h2>Hae kurssia kouluttajan nimellä</h2>
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-		<input type="text" name="trainer" id="trainer" value="" placeholder="Kouluttajan nimi"> <input type="button" name="hae"	id="hae" value="Hae">
+		<input type="text" name="trainer" id="trainer" value="" placeholder="Kouluttajan nimi">
+		<input type="button" name="hae"	id="hae" value="Hae">
 	</form>
-	<br>
-	<script type="text/javascript">
+	<br />
+	<div id="lista"></div>
+</div>
 
+	<script type="text/javascript">
 	//Muuttaa päiväyksen suomalaiseen muotoon
 	function convertYMDDateToFinnishDate(ymdDate) {
 		  var parts = ymdDate.split('-').map(function (part) { return parseInt(part, 10); });
@@ -24,7 +27,7 @@
 			 yes: 'Kyllä',
 			 no: 'Ei'
 			}
-		
+
 	$(document).on("ready", function() {
 		// Kun painiketta id="hae" painetaan
 		$("#hae").on("click", function() {
@@ -45,7 +48,7 @@
 				for(var i = 0; i < data.length; i++) {
 					// Lisätään attribuutilla id="lista" elementtiin sisältöä
 					$("#lista").append("<p><b>Koulutusaihe:</b> " + courselist[data[i].course] +
-							"<br><b>Ajankohta:</b>  " + data[i].weekday + " " + convertYMDDateToFinnishDate(data[i].date) + " klo " + data[i].start + " - " + data[i].end + 
+							"<br><b>Ajankohta:</b>  " + data[i].weekday + " " + convertYMDDateToFinnishDate(data[i].date) + " klo " + data[i].start + " - " + data[i].end +
 							"<br><b>Kouluttaja:</b>  " + data[i].trainer +
 							"<br><b>Ammattipätevyysmerkintä:</b>  " + caplist[data[i].cap] +
 							"<br><b>Kurssikuvaus:</b>  " + data[i].description + "</p>");
@@ -59,14 +62,11 @@
 			.fail(function() {
 				$("#lista").html("<p>Nyt joku meni pieleen, listausta ei voida tehdä.</p>");
 			});
-			
+
 		});
-	
+
 	});
-	
+
 	</script>
-	<div id="lista"></div>
-</div>
 
 <?php include("footer.php"); ?>
-			

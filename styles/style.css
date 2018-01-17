@@ -23,9 +23,9 @@
   body {
       font: 400 15px Roboto, sans-serif;
       line-height: 1.8;
-      color: #303030;      
+      color: #303030;
   }
-  
+
   .table-borderless td,
 .table-borderless th {
     border: hidden;
@@ -33,8 +33,8 @@
 .table>thead>tr>th {
    border-bottom: hidden;
 }
-  
-  
+
+
   h2 {
       font-size: 24px;
       text-transform: uppercase;
@@ -48,7 +48,7 @@
       color: #303030;
       font-weight: 400;
       margin-bottom: 30px;
-  }  
+  }
   .jumbotron {
       background-color: #1097FF;
       color: #fff;
@@ -80,7 +80,7 @@
       font-style: normal;
   }
   .panel {
-      border: 1px solid #1097FF; 
+      border: 1px solid #1097FF;
       border-radius:0 !important;
       transition: box-shadow 0.5s;
   }
@@ -155,7 +155,7 @@
     0% {
       opacity: 0;
       transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       transform: translateY(0%);
@@ -165,7 +165,7 @@
     0% {
       opacity: 0;
       -webkit-transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       -webkit-transform: translateY(0%);
@@ -189,16 +189,16 @@
   button, input, select, textarea {
     margin: 4px 2px 4px 2px !important;
       }
-      
+
   .error {
   	color: red;
   }
-  
+
   .alert {
   max-width: 500px !important;
   }
-  
+
  img {
-  
+
   width: 50%;
   }
